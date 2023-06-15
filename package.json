@@ -1,0 +1,26 @@
+{
+  "name": "heliverse-quiz",
+  "version": "1.0.0",
+  "description": "create quiz",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "sushant singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.1.3",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.2",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.3",
+    "validator": "^13.9.0"
+  }
+}
