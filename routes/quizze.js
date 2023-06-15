@@ -7,8 +7,8 @@ import {
 } from "../controllers/quizze.js";
 
 const router = Router();
-router.post("/quizzes", createQuiz);
-router.get("/quizzes/active", getActiveQuizzes);
-router.get("/quizzes/all", allQuizzes);
-router.get("/quizzes/:id/result", getResultOfQuize);
+router.post("/", createQuiz);
+router.get("/active", getActiveQuizzes);
+router.get("/all", allQuizzes);
+router.get("/:id/result", getResultOfQuize);
 export default router;

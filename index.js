@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 startQuizStatusUpdateJob();
 app.use("/api", authRoute);
 app.use(authMiddleware);
-app.use("/api", quizzeRoute);
+app.use("/api/quizzes", quizzeRoute);
 const port = process.env.PORT || 5000;
 app.listen(port, (req, res) => {
   console.log(`Server Listening on port ${port}...`);
