@@ -9,29 +9,34 @@ const startQuizStatusUpdateJob = (req, res) => {
       const currentTime = new Date();
 
       // Find quizzes that have an inactive status and start time less than or equal to the current time
-      const quizzes = await Quizze.find({
-        status: "inactive",
-        startDate: { $lte: currentTime },
-      });
-      // Update the status of found quizzes to "active"
-      for (const quiz of quizzes) {
-        quiz.status = "active";
-        await quiz.save();
-        // console.log(`Quiz "${quiz.question}" status changed to active.`);
-      }
+      await Quizze.updateMany(
+        {
+          $and: [
+            {
+              status: "inactive",
+            },
+            {
+              startDate: { $lte: currentTime },
+            },
+          ],
+        },
+        { status: "active" }
+      );
 
       // Find quizzes that have an active status and endDate less than the current time
-      const activeQuizzes = await Quizze.find({
-        status: "active",
-        endDate: { $lt: currentTime },
-      });
-
-      // Update the status of found quizzes to "finished"
-      for (const quiz of activeQuizzes) {
-        quiz.status = "finished";
-        await quiz.save();
-        // console.log(`Quiz "${quiz.question}" status changed to finished.`);
-      }
+      await Quizze.updateMany(
+        {
+          $and: [
+            {
+              status: "active",
+            },
+            {
+              endDateDate: { $lte: currentTime },
+            },
+          ],
+        },
+        { status: "finished" }
+      );
     } catch (error) {
       // console.error("Error updating quiz statuses:", error);
       res.status(500).json({ error: true, message: error });

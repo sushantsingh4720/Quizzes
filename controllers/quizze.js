@@ -43,7 +43,9 @@ const getResultOfQuize = async (req, res) => {
       return res.status(404).send({ error: true, message: "Not Found" });
     }
     const differenceInMilliseconds = new Date() - quizze.endDate;
-    const differenceInMinutes = Math.floor(differenceInMilliseconds / 60000);
+    const differenceInMinutes = Math.floor(
+      (differenceInMilliseconds % 3600000) / 60000
+    );
     if (quizze.status !== "finished" || differenceInMinutes < 5) {
       return res.status(404).json({
         error: true,
