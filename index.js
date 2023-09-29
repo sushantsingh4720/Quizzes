@@ -35,7 +35,8 @@ startQuizStatusUpdateJob();
 
 //Implement caching to reduce the response time of frequently accessed data.
 app.use(cache("10 minutes"));
-app.use("/api", authRoute);
+
+app.use("/api/auth", authRoute);
 app.use(authMiddleware);
 app.use("/api/quizzes", quizzeRoute);
 const port = process.env.PORT || 5000;
